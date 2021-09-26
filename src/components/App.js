@@ -3,7 +3,8 @@ import AddContact from './AddContact';
 import ContactList from './ContactList';
 import Header from './Header';
 // import Footer from './Footer';
-import ContactCard from './ContactCard';
+
+import {uuid} from 'uuidv4';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -14,9 +15,17 @@ function App() {
   const addcontactHandler = (contact) => {
 
     console.log(contact);
-    setContacts([...contacts, contact]);
+    setContacts([...contacts, {id: uuid(), ...contact}]);
     return;
 
+  }
+
+  const removeContactHandler = (id) =>{
+    const newContactList = contacts.filter((contact) =>{
+      return contact.id !== id;
+    });
+    setContacts(newContactList);
+    
   }
 
   useEffect ( () =>{
@@ -33,7 +42,7 @@ function App() {
     <div className="ui container">
       <Header />
       <AddContact addcontactHandler={addcontactHandler} />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} getContactId={removeContactHandler} />
       {/* <ContactCard /> */}
       {/* <Footer /> */}
     </div>
