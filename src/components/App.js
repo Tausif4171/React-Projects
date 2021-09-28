@@ -46,11 +46,11 @@ function App() {
 
         <Header />
         <Switch>
-          <Route path="/" exact component={() => (
-            <ContactList contacts={contacts} getContactId={removeContactHandler} />
+          <Route path="/" exact render={(props) => (
+            <ContactList {...props} contacts={contacts} getContactId={removeContactHandler} />
           )} />
-          <Route path="/add" component={() => (
-            <AddContact addcontactHandler={addcontactHandler} />
+          <Route path="/add" render={(props) => (
+            <AddContact {...props} addcontactHandler={addcontactHandler} />
           )} />
         </Switch>
 
