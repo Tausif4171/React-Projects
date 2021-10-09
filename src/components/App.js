@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddContact from './AddContact';
 import ContactList from './ContactList';
 import Header from './Header';
+import ContactDetails from './ContactDetails';
 // import Footer from './Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -46,12 +47,17 @@ function App() {
 
         <Header />
         <Switch>
+
           <Route path="/" exact render={(props) => (
             <ContactList {...props} contacts={contacts} getContactId={removeContactHandler} />
           )} />
+
           <Route path="/add" render={(props) => (
             <AddContact {...props} addcontactHandler={addcontactHandler} />
           )} />
+
+          <Route path="/contact/:id" component={ContactDetails} />
+
         </Switch>
 
       </Router>
