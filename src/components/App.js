@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddContact from './AddContact';
+import EditContact from './EditContact';
 import ContactList from './ContactList';
 import Header from './Header';
 import ContactDetails from './ContactDetails';
@@ -17,8 +18,8 @@ function App() {
   const [contacts, setContacts] = useState([]);
 
   //RetrieveContacts
-  const retrievecontacts = async () =>{
-    const response =await api.get("/contacts");
+  const retrievecontacts = async () => {
+    const response = await api.get("/contacts");
     return response.data;
   };
 
@@ -34,6 +35,14 @@ function App() {
     const response = await api.post("/contacts", request);
     console.log(response);
     setContacts([...contacts, response.data]);
+  }
+
+  const updatecontactHandler = async (contact) => {
+    const response = await api.put(`/contacts/${contact.id}`, contact);
+    const { id, name, email } = response.data;
+    setContacts(contacts.map(contact => {
+      return contact.id === id ? { ...response.data } : contact;
+    }))
   }
 
   const removeContactHandler = async (id) => {
@@ -52,15 +61,15 @@ function App() {
       setContacts(retrivelocalstorage);
     }
     */
-    const getAllContacts = async () =>{
+    const getAllContacts = async () => {
       const allContacts = await retrievecontacts();
-      if(allContacts) setContacts(allContacts);
+      if (allContacts) setContacts(allContacts);
     };
 
     getAllContacts();
 
   }, []);
-  
+
   useEffect(() => {
     // localStorage.setItem(localStorageKey, JSON.stringify(contacts));
   }, [contacts]);
@@ -79,6 +88,10 @@ function App() {
 
           <Route path="/add" render={(props) => (
             <AddContact {...props} addcontactHandler={addcontactHandler} />
+          )} />
+
+          <Route path="/edit" render={(props) => (
+            <EditContact {...props} updatecontactHandler={updatecontactHandler} />
           )} />
 
           <Route path="/contact/:id" component={ContactDetails} />

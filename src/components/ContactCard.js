@@ -16,7 +16,7 @@ const ContactCard = (props) => {
             <div className="content" style={{ marginTop: 20, lineHeight: 2 }}>
                 <Container style={{ marginLeft: -30 }}>
                     <Row xs={2} md={4} lg={12}>
-                        <Link to={{ pathname: `/contact/${id}`, state: { contact: props.contact } }}>
+                        <Link to={{ pathname: `/contact/${id}`, state: { contact: props.contact } }} style={{marginLeft: 380, marginTop:-78}}>
                             <Col style={{ marginLeft: 0 }}>
                                 <div className="header">
                                     {name}
@@ -28,11 +28,18 @@ const ContactCard = (props) => {
                                 </div>
                             </Col>
                         </Link>
-                        <Col style={{ marginLeft: 390, marginTop: -52 }}>
+                        <Col style={{ marginLeft: 746, marginTop: -78 }}>
                             <i className="trash alternate outline icon"
                                 style={{ color: "red", fontSize: 22 }}
                                 onClick={() => props.clickHandler(id)} ></i>
                         </Col>
+                        <Link to={{ pathname: `/edit`, state: { contact: props.contact } }} >
+                        <Col style={{ marginLeft: 690, marginTop: -78 }}>
+                            <i className="edit alternate outline icon"
+                                style={{ color: "blue", fontSize: 22 }}
+                                 ></i>
+                        </Col>
+                        </Link>
                     </Row>
                 </Container>
             </div>
