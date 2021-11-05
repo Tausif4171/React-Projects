@@ -12,11 +12,11 @@ const ContactCard = (props) => {
 
     return (
         <div className="item">
-        <img className="ui avatar image" style={{width:100,height:60,marginTop:16,marginLeft:276}} src={user1} alt="error" />
+            <img className="ui avatar image" style={{ width: 100, height: 60, marginTop: 16, marginLeft: 276 }} src={user1} alt="error" />
             <div className="content" style={{ marginTop: 20, lineHeight: 2 }}>
-                <Container style={{marginLeft:-30}}>
+                <Container style={{ marginLeft: -30 }}>
                     <Row xs={2} md={4} lg={12}>
-                        <Link to={{pathname:`/contact/${id}`, state:{contact:props.contact}}}>
+                        <Link to={{ pathname: `/contact/${id}`, state: { contact: props.contact } }}>
                             <Col style={{ marginLeft: 0 }}>
                                 <div className="header">
                                     {name}
@@ -28,9 +28,9 @@ const ContactCard = (props) => {
                                 </div>
                             </Col>
                         </Link>
-                        <Col style={{ marginLeft: 390,marginTop:-52 }}>
+                        <Col style={{ marginLeft: 390, marginTop: -52 }}>
                             <i className="trash alternate outline icon"
-                                style={{ color: "red",fontSize:22 }}
+                                style={{ color: "red", fontSize: 22 }}
                                 onClick={() => props.clickHandler(id)} ></i>
                         </Col>
                     </Row>

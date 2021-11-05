@@ -3,6 +3,7 @@ import AddContact from './AddContact';
 import ContactList from './ContactList';
 import Header from './Header';
 import ContactDetails from './ContactDetails';
+import api from '../api/contacts';
 // import Footer from './Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -14,6 +15,13 @@ function App() {
 
   const localStorageKey = "contacts";
   const [contacts, setContacts] = useState([]);
+
+  //RetrieveContacts
+  const retrievecontacts = async () =>{
+    const response =await api.get("/contacts");
+    return response.data;
+  };
+
   const addcontactHandler = (contact) => {
 
     console.log(contact);
@@ -31,13 +39,23 @@ function App() {
   }
 
   useEffect(() => {
+    /*
     const retrivelocalstorage = JSON.parse(localStorage.getItem(localStorageKey));
     if (retrivelocalstorage) {
       setContacts(retrivelocalstorage);
     }
+    */
+    const getAllContacts = async () =>{
+      const allContacts = await retrievecontacts();
+      if(allContacts) setContacts(allContacts);
+    };
+
+    getAllContacts();
+
   }, []);
+  
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(contacts));
+    // localStorage.setItem(localStorageKey, JSON.stringify(contacts));
   }, [contacts]);
   return (
 
@@ -57,6 +75,7 @@ function App() {
           )} />
 
           <Route path="/contact/:id" component={ContactDetails} />
+          {/* <Route path="/"  component={Footer} /> */}
 
         </Switch>
 

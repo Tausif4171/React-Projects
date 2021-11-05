@@ -17,7 +17,7 @@ const ContactDetails = (props) => {
                 </div>
 
             </div>
-            <div className="center-div" style={{marginLeft:474}}>
+            <div className="center-div" style={{ marginLeft: 474 }}>
                 <Link to="/">
                     <button className="ui button blue center">
                         Back to Contact List
