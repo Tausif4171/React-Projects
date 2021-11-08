@@ -3,9 +3,9 @@ import React from 'react';
 const Footer = () =>{
     return(
         <div className="container">
-            <Footer>
-                <h1>Copyright &copy; Tausif Khan</h1>
-            </Footer>
+            
+                <h1 style={{color:"brown", fontSize:18, marginTop: 314, textAlign:"center"}}>Copyright © 2021 Tausif Khan. All rights reserved.</h1>
+            
         </div>
     );
 }

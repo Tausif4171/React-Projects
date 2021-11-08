@@ -5,7 +5,7 @@ import ContactList from './ContactList';
 import Header from './Header';
 import ContactDetails from './ContactDetails';
 import api from '../api/contacts';
-// import Footer from './Footer';
+import Footer from './Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { uuid } from 'uuidv4';
@@ -123,14 +123,14 @@ function App() {
           {/* <Route path="/"  component={Footer} /> */}
 
         </Switch>
-
+        <Footer />
       </Router>
 
 
       {/* <AddContact addcontactHandler={addcontactHandler} />
       <ContactList contacts={contacts} getContactId={removeContactHandler} /> */}
       {/* <ContactCard /> */}
-      {/* <Footer /> */}
+      
     </div>
   );
 }
